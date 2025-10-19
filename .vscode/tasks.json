@@ -1,0 +1,38 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Open Portfolio in Browser",
+            "type": "shell",
+            "command": "start",
+            "args": ["index.html"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": [],
+            "detail": "Opens the portfolio website in the default browser"
+        },
+        {
+            "label": "Start Live Server",
+            "type": "shell",
+            "command": "python",
+            "args": ["-m", "http.server", "3000"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": [],
+            "detail": "Starts a local HTTP server on port 3000 (requires Python)"
+        }
+    ]
+}

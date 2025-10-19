@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Portfolio</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#home">RAJHI ISMAIL</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto me-4">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About me</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact me</a>
+                    </li>
+                </ul>
+                <a href="#contact" class="btn btn-primary btn-sm">Hire Me</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section d-flex align-items-center">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <p class="text-muted mb-2">Hi I am</p>
+                    <h2 class="text-white mb-3">Rajhi Ismail</h2>
+                    <h1 class="display-4 fw-bold text-primary mb-4">
+                        Computer Science Student
+                    </h1>
+                    <div class="social-links mb-4">
+                        <a href="https://www.linkedin.com/in/rajhi-ismail-507567298" class="text-white me-3" target="_blank" rel="noopener">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/RAJHI-ISMAIL" class="text-white me-3" target="_blank" rel="noopener">
+                            <i class="bi bi-github"></i>
+                        </a>
+                    </div>
+                    <div class="d-flex gap-3 mb-4">
+                        <a href="#contact" class="btn btn-primary btn-lg">Hire Me</a>
+                        <button type="button" class="btn btn-outline-light btn-lg" id="downloadCV" onclick="downloadCV()">Download CV</button>
+                    </div>
+                    
+                    <!-- Stats -->
+                    
+                </div>
+                <div class="col-lg-6 text-center" data-aos="fade-left">
+                    <div class="hero-image">
+                        <img src="images/portomg.jpg" alt="Rajhi Ismail" class="img-fluid profile-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-bg-overlay"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-5" data-aos="fade-up">
+                    <h2 class="display-5 fw-bold">About Me</h2>
+                    <p class="lead text-muted">Get to know more about my background and expertise</p>
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h3 class="fw-bold mb-4">Passionate Developer & Problem Solver</h3>
+                    <p class="mb-4">
+                       a dedicated computer science student and aspiring full-stack developer with strong skills in programming languages and algorithms. I enjoy building practical, user-focused applications that solve real problems.
+
+I’ve developed several projects, including a simple e-commerce website, a weather app using Flutter, and a gym management system built with Java and SQL. Currently, I’m expanding my knowledge in AI and machine learning, exploring how intelligent systems can enhance everyday applications.
+
+My curiosity and passion for technology drive me to continuously learn, improve, and create efficient, elegant solutions.
+                    </p>
+                    <p class="mb-4">
+                        My journey in tech has been driven by curiosity and a constant desire to learn. 
+                        I enjoy tackling complex challenges and turning them into elegant, user-friendly solutions.
+                    </p>
+                    <div class="row text-center">
+                        
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="about-image">
+                        <img src="images/portomg.jpg" alt="About Rajhi Ismail" class="img-fluid rounded shadow">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-5" data-aos="fade-up">
+                    <h2 class="display-5 fw-bold text-white">Services</h2>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="skill-card text-center p-4 h-100">
+                        <div class="skill-icon mb-3">
+                            <i class="bi bi-person fs-1"></i>
+                        </div>
+                        <h4 class="fw-bold">UI/UX Design</h4>
+                        <p class="text-muted mb-4">I create clean, modern, and user-friendly interfaces focused on providing the best user experience. From wireframes to prototypes, I design apps that are both functional and visually appealing</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="skill-card text-center p-4 h-100">
+                        <div class="skill-icon mb-3">
+                            <i class="bi bi-person fs-1"></i>
+                        </div>
+                        <h4 class="fw-bold">Web Development</h4>
+                        <p class="text-muted mb-4">I build responsive and efficient websites using modern technologies and best development practices. My goal is to deliver fast, secure, and scalable web solutions that meet user needs</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="skill-card text-center p-4 h-100">
+                        <div class="skill-icon mb-3">
+                            <i class="bi bi-person fs-1"></i>
+                        </div>
+                        <h4 class="fw-bold">Mobile App Development (Flutter)</h4>
+                        <p class="text-muted mb-4">I develop cross-platform mobile applications using Flutter, combining performance and design consistency across Android and iOS</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-5" data-aos="fade-up">
+                    <h2 class="display-5 fw-bold">Featured Projects</h2>
+                    <p class="lead text-muted">Some of my recent </p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-card h-100">
+                        <div class="project-image">
+                            <img src="images/project1.jpg" alt="Project 1" class="img-fluid">
+                            <div class="project-overlay">
+                                <div class="project-actions">
+                                    <a href="#" class="btn btn-primary btn-sm">
+                                        <i class="bi bi-eye"></i> View
+                                    </a>
+                                    <a href="#" class="btn btn-outline-light btn-sm">
+                                        <i class="bi bi-github"></i> Code
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content p-4">
+                            <h5 class="fw-bold">Anime E-commerce Platform</h5>
+                            <p class="text-muted">Front-end anime store with login/sign-up and responsive design</p>
+                            <div class="project-tech">
+                                <span class="badge bg-secondary me-1">HTML</span>
+                                <span class="badge bg-secondary me-1">CSS</span>
+                                <span class="badge bg-secondary me-1">JavaScript</span>
+                                <span class="badge bg-secondary me-1">Bootstrap</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-card h-100">
+                        <div class="project-image">
+                            <img src="images/project2.jpg" alt="Project 2" class="img-fluid">
+                            <div class="project-overlay">
+                                <div class="project-actions">
+                                    <a href="#" class="btn btn-primary btn-sm">
+                                        <i class="bi bi-eye"></i> View
+                                    </a>
+                                    <a href="#" class="btn btn-outline-light btn-sm">
+                                        <i class="bi bi-github"></i> Code
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content p-4">
+                            <h5 class="fw-bold">Task Management App</h5>
+                            <p class="text-muted">Collaborative task management with real-time updates</p>
+                            <div class="project-tech">
+                                <span class="badge bg-secondary me-1">Vue.js</span>
+                                <span class="badge bg-secondary me-1">Socket.io</span>
+                                <span class="badge bg-secondary me-1">Express</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="project-card h-100">
+                        <div class="project-image">
+                            <img src="images/project3.jpg" alt="Project 3" class="img-fluid">
+                            <div class="project-overlay">
+                                <div class="project-actions">
+                                    <a href="#" class="btn btn-primary btn-sm">
+                                        <i class="bi bi-eye"></i> View
+                                    </a>
+                                    <a href="#" class="btn btn-outline-light btn-sm">
+                                        <i class="bi bi-github"></i> Code
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content p-4">
+                            <h5 class="fw-bold">Weather Dashboard</h5>
+                            <p class="text-muted">Beautiful weather app with interactive charts</p>
+                            <div class="project-tech">
+                                <span class="badge bg-secondary me-1">JavaScript</span>
+                                <span class="badge bg-secondary me-1">Chart.js</span>
+                                <span class="badge bg-secondary me-1">API</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-5" data-aos="fade-up">
+                    <h2 class="display-5 fw-bold">Get In Touch</h2>
+                    <p class="lead text-muted">Let's discuss your next project</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="row g-4">
+                        <div class="col-md-4 text-center" data-aos="fade-up" data-aos-delay="100">
+                            <div class="contact-item p-4">
+                                <i class="bi bi-envelope fs-1 text-primary mb-3"></i>
+                                <h5 class="fw-bold">Email</h5>
+                                <p class="text-muted">ismailrajhi07@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-center" data-aos="fade-up" data-aos-delay="200">
+                            <div class="contact-item p-4">
+                                <i class="bi bi-telephone fs-1 text-primary mb-3"></i>
+                                <h5 class="fw-bold">Phone</h5>
+                                <p class="text-muted">+216 26922955</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-center" data-aos="fade-up" data-aos-delay="300">
+                            <div class="contact-item p-4">
+                                <i class="bi bi-geo-alt fs-1 text-primary mb-3"></i>
+                                <h5 class="fw-bold">Location</h5>
+                                <p class="text-muted">Tunisie , Beja</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-12" data-aos="fade-up" data-aos-delay="400">
+                            <form class="contact-form">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" placeholder="Your Name" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="email" class="form-control" placeholder="Your Email" required>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" class="form-control" placeholder="Subject" required>
+                                    </div>
+                                    <div class="col-12">
+                                        <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                                    </div>
+                                    <div class="col-12 text-center">
+                                        <button type="submit" class="btn btn-primary btn-lg">Send Message</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <p class="mb-0">&copy; 2025 Your Name. All rights reserved.</p>
+                </div>
+                <div class="col-lg-6 text-end">
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/rajhi-ismail-507567298" class="text-white me-3" target="_blank" rel="noopener"><i class="bi bi-linkedin"></i></a>
+                        <a href="https://github.com/RAJHI-ISMAIL" class="text-white me-3" target="_blank" rel="noopener"><i class="bi bi-github"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Download CV Function -->
+    <script>
+        function downloadCV() {
+            // Show notification
+            const notification = document.createElement('div');
+            notification.className = 'alert alert-success';
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 9999;
+                max-width: 300px;
+                opacity: 0;
+                transform: translateX(100%);
+                transition: all 0.3s ease;
+            `;
+            notification.textContent = 'CV download started! 📄';
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '1';
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+            
+            // Create download link
+            const link = document.createElement('a');
+            link.href = 'cv/Rajhisimailcv.pdf';
+            link.download = 'Rajhi_Ismail_CV.pdf';
+            link.style.display = 'none';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Update button
+            const button = document.getElementById('downloadCV');
+            if (button) {
+                const originalText = button.innerHTML;
+                button.innerHTML = '<i class="bi bi-check-circle"></i> Downloaded!';
+                button.style.background = '#28a745';
+                button.style.borderColor = '#28a745';
+                
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.style.background = '';
+                    button.style.borderColor = '';
+                }, 3000);
+            }
+            
+            return false; // Prevent default link behavior
+        }
+    </script>
+    
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+</body>
+</html>
