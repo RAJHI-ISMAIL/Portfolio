@@ -171,26 +171,25 @@ My curiosity and passion for technology drive me to continuously learn, improve,
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
                     <div class="project-card h-100">
                         <div class="project-image">
-                            <img src="images/project1.jpg" alt="Project 1" class="img-fluid">
+                            <img src="Projects/Weatherly/Weatherly.png" alt="Project 1" class="img-fluid">
                             <div class="project-overlay">
                                 <div class="project-actions">
-                                    <a href="#" class="btn btn-primary btn-sm">
+                                    <a href="#" class="btn btn-primary btn-sm project-view-btn" data-project="weatherly">
                                         <i class="bi bi-eye"></i> View
                                     </a>
-                                    <a href="#" class="btn btn-outline-light btn-sm">
+                                    <a href="https://github.com/RAJHI-ISMAIL/Weatherly/blob/main/README.md" class="btn btn-outline-light btn-sm" target="_blank" rel="noopener">
                                         <i class="bi bi-github"></i> Code
                                     </a>
                                 </div>
                             </div>
                         </div>
                         <div class="project-content p-4">
-                            <h5 class="fw-bold">Anime E-commerce Platform</h5>
-                            <p class="text-muted">Front-end anime store with login/sign-up and responsive design</p>
+                            <h5 class="fw-bold">Weatherly</h5>
+                            <p class="text-muted">Weatherly is a beautiful and intuitive weather app built with Flutter that provides live weather forecasts for any location. With stunning Lottie animations and a clean, modern interface</p>
                             <div class="project-tech">
-                                <span class="badge bg-secondary me-1">HTML</span>
-                                <span class="badge bg-secondary me-1">CSS</span>
-                                <span class="badge bg-secondary me-1">JavaScript</span>
-                                <span class="badge bg-secondary me-1">Bootstrap</span>
+                                <span class="badge bg-secondary me-1">Flutter</span>
+                                <span class="badge bg-secondary me-1">Dart</span>
+                                <span class="badge bg-secondary me-1">Api OpenWeather</span>
                             </div>
                         </div>
                     </div>
@@ -198,25 +197,25 @@ My curiosity and passion for technology drive me to continuously learn, improve,
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
                     <div class="project-card h-100">
                         <div class="project-image">
-                            <img src="images/project2.jpg" alt="Project 2" class="img-fluid">
+                            <img src="Projects/CineScope/logo.png" alt="Project 2" class="img-fluid">
                             <div class="project-overlay">
                                 <div class="project-actions">
                                     <a href="#" class="btn btn-primary btn-sm">
                                         <i class="bi bi-eye"></i> View
                                     </a>
-                                    <a href="#" class="btn btn-outline-light btn-sm">
+                                    <a href="https://github.com/RAJHI-ISMAIL/Weatherly/blob/main/README.md" class="btn btn-outline-light btn-sm" target="_blank" rel="noopener">
                                         <i class="bi bi-github"></i> Code
                                     </a>
                                 </div>
                             </div>
                         </div>
                         <div class="project-content p-4">
-                            <h5 class="fw-bold">Task Management App</h5>
-                            <p class="text-muted">Collaborative task management with real-time updates</p>
+                            <h5 class="fw-bold">CineScope</h5>
+                            <p class="text-muted">A Flutter mobile application that allows users to search for movies and TV series</p>
                             <div class="project-tech">
-                                <span class="badge bg-secondary me-1">Vue.js</span>
-                                <span class="badge bg-secondary me-1">Socket.io</span>
-                                <span class="badge bg-secondary me-1">Express</span>
+                                <span class="badge bg-secondary me-1">Flutter</span>
+                                <span class="badge bg-secondary me-1">Dart</span>
+                                <span class="badge bg-secondary me-1">API</span>
                             </div>
                         </div>
                     </div>
@@ -230,19 +229,19 @@ My curiosity and passion for technology drive me to continuously learn, improve,
                                     <a href="#" class="btn btn-primary btn-sm">
                                         <i class="bi bi-eye"></i> View
                                     </a>
-                                    <a href="#" class="btn btn-outline-light btn-sm">
+                                    <a href="https://github.com/RAJHI-ISMAIL/Weatherly/blob/main/README.md" class="btn btn-outline-light btn-sm" target="_blank" rel="noopener">
                                         <i class="bi bi-github"></i> Code
                                     </a>
                                 </div>
                             </div>
                         </div>
                         <div class="project-content p-4">
-                            <h5 class="fw-bold">Weather Dashboard</h5>
-                            <p class="text-muted">Beautiful weather app with interactive charts</p>
+                            <h5 class="fw-bold">Weatherly</h5>
+                            <p class="text-muted">Weatherly is a beautiful and intuitive weather app built with Flutter that provides live weather forecasts for any location. With stunning Lottie animations and a clean, modern interface</p>
                             <div class="project-tech">
-                                <span class="badge bg-secondary me-1">JavaScript</span>
-                                <span class="badge bg-secondary me-1">Chart.js</span>
-                                <span class="badge bg-secondary me-1">API</span>
+                                <span class="badge bg-secondary me-1">Flutter</span>
+                                <span class="badge bg-secondary me-1">Dart</span>
+                                <span class="badge bg-secondary me-1">OpenWeather API</span>
                             </div>
                         </div>
                     </div>
@@ -399,5 +398,32 @@ My curiosity and passion for technology drive me to continuously learn, improve,
     
     <!-- Custom JS -->
     <script src="js/script.js"></script>
+    
+        <!-- Project Detail Modal -->
+        <div class="modal fade" id="projectModal" tabindex="-1" aria-labelledby="projectModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content bg-dark text-white">
+                    <div class="modal-header border-0">
+                        <h5 class="modal-title" id="projectModalLabel">Project Title</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img id="projectModalImage" src="" alt="Project image" class="img-fluid rounded">
+                            </div>
+                            <div class="col-md-6">
+                                <p id="projectModalDescription"></p>
+                                <div id="projectModalTech" class="mb-3"></div>
+                                <div class="d-flex gap-2">
+                                    <a id="projectModalLive" href="#" target="_blank" rel="noopener" class="btn btn-primary">Live Demo</a>
+                                    <a id="projectModalCode" href="#" target="_blank" rel="noopener" class="btn btn-outline-light">Source Code</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 </body>
 </html>

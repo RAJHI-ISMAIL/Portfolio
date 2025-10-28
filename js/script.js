@@ -481,3 +481,58 @@ function initCVDownload() {
         });
     }
 }
+
+// Project modal handler
+function initProjectModal() {
+    const buttons = document.querySelectorAll('.project-view-btn');
+    const modalEl = document.getElementById('projectModal');
+    if (!modalEl) return;
+
+    const bsModal = new bootstrap.Modal(modalEl);
+
+    const projects = {
+        weatherly: {
+            title: 'Weatherly',
+            image: 'images/project3.jpg',
+            description: 'Weatherly is a beautiful and intuitive weather app built with Flutter that provides live weather forecasts for any location. With stunning animations and a clean, modern interface.',
+            tech: ['Flutter','Dart','OpenWeather API'],
+            // Open local video when "View" is clicked
+            live: 'Projects/Weatherly/Weatherlyvid.mp4',
+            code: 'https://github.com/RAJHI-ISMAIL/Weatherly/blob/main/README.md'
+        }
+    };
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const id = this.getAttribute('data-project');
+            const p = projects[id];
+            if (!p) return;
+
+            // If the project has a live link that points to an external page (http) or a video file (.mp4/.webm),
+            // open it directly instead of showing the modal.
+            if (p.live && p.live !== '#') {
+                const lower = p.live.toLowerCase();
+                if (lower.endsWith('.mp4') || lower.endsWith('.webm') || p.live.startsWith('http')) {
+                    window.open(p.live, '_blank', 'noopener');
+                    return;
+                }
+            }
+
+            // populate modal
+            document.getElementById('projectModalLabel').textContent = p.title;
+            document.getElementById('projectModalImage').src = p.image;
+            document.getElementById('projectModalDescription').textContent = p.description;
+            document.getElementById('projectModalTech').innerHTML = p.tech.map(t => `<span class="badge bg-secondary me-1">${t}</span>`).join(' ');
+            document.getElementById('projectModalLive').href = p.live;
+            document.getElementById('projectModalCode').href = p.code;
+
+            bsModal.show();
+        });
+    });
+}
+
+// Initialize project modal listener after DOM load
+document.addEventListener('DOMContentLoaded', function() {
+    initProjectModal();
+});
