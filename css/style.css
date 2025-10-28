@@ -322,6 +322,21 @@ html {
     font-size: 0.9rem;
 }
 
+/* Ensure project images fill the card area and scale nicely */
+.project-image {
+    position: relative;
+    width: 100%;
+    height: 260px; /* default card image height */
+    overflow: hidden;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
 /* Contact Section */
 .contact-item {
     background: white;
@@ -505,6 +520,18 @@ footer {
     .btn-lg {
         padding: 10px 25px;
         font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .project-image {
+        height: 200px;
+    }
+}
+
+@media (max-width: 576px) {
+    .project-image {
+        height: 150px;
     }
 }
 

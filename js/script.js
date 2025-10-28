@@ -153,38 +153,66 @@ function initContactForm() {
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            const name = this.querySelector('input[placeholder="Your Name"]').value;
-            const email = this.querySelector('input[placeholder="Your Email"]').value;
-            const subject = this.querySelector('input[placeholder="Subject"]').value;
-            const message = this.querySelector('textarea').value;
-            
+
+            // Read form fields by name
+            const name = this.querySelector('input[name="name"]').value.trim();
+            const email = this.querySelector('input[name="email"]').value.trim();
+            const subject = this.querySelector('input[name="subject"]').value.trim();
+            const message = this.querySelector('textarea[name="message"]').value.trim();
+
             // Basic validation
             if (!name || !email || !subject || !message) {
                 showNotification('Please fill in all fields', 'error');
                 return;
             }
-            
+
             if (!isValidEmail(email)) {
                 showNotification('Please enter a valid email address', 'error');
                 return;
             }
-            
-            // Simulate form submission
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            
-            submitBtn.textContent = 'Sending...';
-            submitBtn.disabled = true;
-            
-            setTimeout(() => {
-                showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
-                this.reset();
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-            }, 2000);
+
+            // Try to send via EmailJS if available (preferred). If EmailJS is not configured
+            // or the send fails, fall back to mailto: which opens the user's mail client.
+            //
+            // EmailJS Service ID and Template ID (inserted by user)
+            const EMAILJS_SERVICE_ID = 'portfilio';
+            const EMAILJS_TEMPLATE_ID = 'template_lmrmmzs';
+
+            const templateParams = {
+                from_name: name,
+                from_email: email,
+                subject: subject,
+                message: message
+            };
+
+            const tryMailtoFallback = () => {
+                const to = 'ismailrajhi07@gmail.com';
+                const mailSubject = encodeURIComponent(subject + ' — from ' + name);
+                const mailBody = encodeURIComponent(`Name: ${name}%0AEmail: ${email}%0A%0A${message}`);
+                const mailto = `mailto:${to}?subject=${mailSubject}&body=${mailBody}`;
+                window.location.href = mailto;
+                showNotification('Opening your mail client to send the message...', 'success');
+                setTimeout(() => contactForm.reset(), 1000);
+            };
+
+            // Use EmailJS if the SDK has been initialized and placeholders were replaced
+            if (window.emailjs && EMAILJS_SERVICE_ID !== 'YOUR_SERVICE_ID' && EMAILJS_TEMPLATE_ID !== 'YOUR_TEMPLATE_ID') {
+                showNotification('Sending message...', 'success');
+                emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+                    .then(function(response) {
+                        console.log('EmailJS success', response.status, response.text);
+                        showNotification('Message sent! I will get back to you soon.', 'success');
+                        contactForm.reset();
+                    }, function(error) {
+                        console.error('EmailJS error', error);
+                        showNotification('Failed to send via EmailJS, opening mail client as fallback.', 'error');
+                        // fallback to mailto
+                        tryMailtoFallback();
+                    });
+            } else {
+                // EmailJS not configured — use mailto fallback
+                tryMailtoFallback();
+            }
         });
     }
 }
@@ -499,6 +527,15 @@ function initProjectModal() {
             // Open local video when "View" is clicked
             live: 'Projects/Weatherly/Weatherlyvid.mp4',
             code: 'https://github.com/RAJHI-ISMAIL/Weatherly/blob/main/README.md'
+        }
+        ,
+        cinescope: {
+            title: 'CineScope',
+            image: 'Projects/CineScope/logo.png',
+            description: 'CineScope is a movie discovery app built with Flutter. Click View to watch a short demo video.',
+            tech: ['Flutter','Dart'],
+            live: 'Projects/CineScope/viewcine.mp4',
+            code: 'https://github.com/RAJHI-ISMAIL/CineScope/blob/main/README.md'
         }
     };
 
