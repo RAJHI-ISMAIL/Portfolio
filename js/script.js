@@ -1,6 +1,6 @@
 // Portfolio JavaScript - Modern Interactive Features
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Initialize AOS (Animate On Scroll)
     AOS.init({
         duration: 1000,
@@ -11,40 +11,46 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Navbar scroll effect
     initNavbarScroll();
-    
+
     // Smooth scrolling for navigation links
     initSmoothScrolling();
-    
+
     // Active section highlighting
     initActiveSection();
-    
+
     // Typing animation for hero section
     initTypingAnimation();
-    
+
     // Contact form handling
     initContactForm();
-    
+
     // Scroll to top button
     initScrollToTop();
-    
+
     // Loading screen
     initLoadingScreen();
-    
+
     // Parallax effects
     initParallaxEffects();
-    
+
     // Skills animation
     initSkillsAnimation();
-    
+
     // CV download tracking
     initCVDownload();
+
+    // Custom cursor and mouse trail
+    initCustomCursor();
+
+    // Background particles
+    initBackgroundParticles();
 });
 
 // Navbar scroll effect
 function initNavbarScroll() {
     const navbar = document.querySelector('.navbar');
-    
-    window.addEventListener('scroll', function() {
+
+    window.addEventListener('scroll', function () {
         if (window.scrollY > 50) {
             navbar.classList.add('scrolled');
         } else {
@@ -56,22 +62,22 @@ function initNavbarScroll() {
 // Smooth scrolling for navigation links
 function initSmoothScrolling() {
     const navLinks = document.querySelectorAll('a[href^="#"]');
-    
+
     navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function (e) {
             e.preventDefault();
-            
+
             const targetId = this.getAttribute('href');
             const targetSection = document.querySelector(targetId);
-            
+
             if (targetSection) {
                 const offsetTop = targetSection.offsetTop - 70;
-                
+
                 window.scrollTo({
                     top: offsetTop,
                     behavior: 'smooth'
                 });
-                
+
                 // Close mobile menu if open
                 const navbarCollapse = document.querySelector('.navbar-collapse');
                 if (navbarCollapse.classList.contains('show')) {
@@ -87,19 +93,19 @@ function initSmoothScrolling() {
 function initActiveSection() {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-    
-    window.addEventListener('scroll', function() {
+
+    window.addEventListener('scroll', function () {
         let currentSection = '';
-        
+
         sections.forEach(section => {
             const sectionTop = section.offsetTop - 100;
             const sectionHeight = section.clientHeight;
-            
+
             if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
                 currentSection = section.getAttribute('id');
             }
         });
-        
+
         navLinks.forEach(link => {
             link.classList.remove('active');
             if (link.getAttribute('href') === '#' + currentSection) {
@@ -116,10 +122,10 @@ function initTypingAnimation() {
     let currentRoleIndex = 0;
     let currentCharIndex = 0;
     let isDeleting = false;
-    
+
     function typeRole() {
         const currentRole = roles[currentRoleIndex];
-        
+
         if (isDeleting) {
             roleElement.textContent = currentRole.substring(0, currentCharIndex - 1);
             currentCharIndex--;
@@ -127,9 +133,9 @@ function initTypingAnimation() {
             roleElement.textContent = currentRole.substring(0, currentCharIndex + 1);
             currentCharIndex++;
         }
-        
+
         let typeSpeed = isDeleting ? 100 : 200;
-        
+
         if (!isDeleting && currentCharIndex === currentRole.length) {
             typeSpeed = 2000;
             isDeleting = true;
@@ -137,10 +143,10 @@ function initTypingAnimation() {
             isDeleting = false;
             currentRoleIndex = (currentRoleIndex + 1) % roles.length;
         }
-        
+
         setTimeout(typeRole, typeSpeed);
     }
-    
+
     if (roleElement) {
         setTimeout(typeRole, 1000);
     }
@@ -149,9 +155,9 @@ function initTypingAnimation() {
 // Contact form handling
 function initContactForm() {
     const contactForm = document.querySelector('.contact-form');
-    
+
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', function (e) {
             e.preventDefault();
 
             // Read form fields by name
@@ -199,11 +205,11 @@ function initContactForm() {
             if (window.emailjs && EMAILJS_SERVICE_ID !== 'YOUR_SERVICE_ID' && EMAILJS_TEMPLATE_ID !== 'YOUR_TEMPLATE_ID') {
                 showNotification('Sending message...', 'success');
                 emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
-                    .then(function(response) {
+                    .then(function (response) {
                         console.log('EmailJS success', response.status, response.text);
                         showNotification('Message sent! I will get back to you soon.', 'success');
                         contactForm.reset();
-                    }, function(error) {
+                    }, function (error) {
                         console.error('EmailJS error', error);
                         showNotification('Failed to send via EmailJS, opening mail client as fallback.', 'error');
                         // fallback to mailto
@@ -238,14 +244,14 @@ function showNotification(message, type = 'success') {
         transition: all 0.3s ease;
     `;
     notification.textContent = message;
-    
+
     document.body.appendChild(notification);
-    
+
     setTimeout(() => {
         notification.style.opacity = '1';
         notification.style.transform = 'translateX(0)';
     }, 100);
-    
+
     setTimeout(() => {
         notification.style.opacity = '0';
         notification.style.transform = 'translateX(100%)';
@@ -262,16 +268,16 @@ function initScrollToTop() {
     scrollTopBtn.className = 'scroll-top';
     scrollTopBtn.innerHTML = '<i class="bi bi-arrow-up"></i>';
     document.body.appendChild(scrollTopBtn);
-    
-    window.addEventListener('scroll', function() {
+
+    window.addEventListener('scroll', function () {
         if (window.scrollY > 300) {
             scrollTopBtn.classList.add('show');
         } else {
             scrollTopBtn.classList.remove('show');
         }
     });
-    
-    scrollTopBtn.addEventListener('click', function() {
+
+    scrollTopBtn.addEventListener('click', function () {
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
@@ -286,8 +292,8 @@ function initLoadingScreen() {
     loadingScreen.className = 'loading';
     loadingScreen.innerHTML = '<div class="spinner"></div>';
     document.body.appendChild(loadingScreen);
-    
-    window.addEventListener('load', function() {
+
+    window.addEventListener('load', function () {
         setTimeout(() => {
             loadingScreen.style.opacity = '0';
             setTimeout(() => {
@@ -299,10 +305,10 @@ function initLoadingScreen() {
 
 // Parallax effects
 function initParallaxEffects() {
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
         const scrolled = window.pageYOffset;
         const parallaxElements = document.querySelectorAll('.hero-bg-overlay');
-        
+
         parallaxElements.forEach(element => {
             const speed = 0.5;
             element.style.transform = `translateY(${scrolled * speed}px)`;
@@ -317,8 +323,8 @@ function initSkillsAnimation() {
         threshold: 0.5,
         rootMargin: '0px 0px -100px 0px'
     };
-    
-    const observer = new IntersectionObserver(function(entries) {
+
+    const observer = new IntersectionObserver(function (entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.style.animationDelay = `${Math.random() * 0.5}s`;
@@ -326,7 +332,7 @@ function initSkillsAnimation() {
             }
         });
     }, observerOptions);
-    
+
     skillCards.forEach(card => {
         observer.observe(card);
     });
@@ -335,12 +341,12 @@ function initSkillsAnimation() {
 // Counter animation for stats
 function animateCounters() {
     const counters = document.querySelectorAll('.stat-item h4');
-    
+
     counters.forEach(counter => {
         const target = parseInt(counter.textContent);
         let count = 0;
         const increment = target / 100;
-        
+
         const updateCounter = () => {
             if (count < target) {
                 count += increment;
@@ -350,7 +356,7 @@ function animateCounters() {
                 counter.textContent = target + (counter.textContent.includes('+') ? '+' : '') + (counter.textContent.includes('%') ? '%' : '');
             }
         };
-        
+
         updateCounter();
     });
 }
@@ -359,15 +365,15 @@ function animateCounters() {
 function initProjectFilter() {
     const filterButtons = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
-    
+
     filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function () {
             const filter = this.getAttribute('data-filter');
-            
+
             // Update active filter button
             filterButtons.forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
-            
+
             // Filter projects
             projectCards.forEach(card => {
                 if (filter === 'all' || card.classList.contains(filter)) {
@@ -397,18 +403,18 @@ function initCursorEffects() {
         opacity: 0;
     `;
     document.body.appendChild(cursor);
-    
-    document.addEventListener('mousemove', function(e) {
+
+    document.addEventListener('mousemove', function (e) {
         cursor.style.left = e.clientX - 10 + 'px';
         cursor.style.top = e.clientY - 10 + 'px';
         cursor.style.opacity = '0.5';
     });
-    
-    document.addEventListener('mouseenter', function() {
+
+    document.addEventListener('mouseenter', function () {
         cursor.style.opacity = '0.5';
     });
-    
-    document.addEventListener('mouseleave', function() {
+
+    document.addEventListener('mouseleave', function () {
         cursor.style.opacity = '0';
     });
 }
@@ -433,13 +439,13 @@ function initThemeSwitcher() {
         z-index: 1000;
         transition: all 0.3s ease;
     `;
-    
+
     document.body.appendChild(themeToggle);
-    
-    themeToggle.addEventListener('click', function() {
+
+    themeToggle.addEventListener('click', function () {
         document.body.classList.toggle('dark-theme');
         const icon = this.querySelector('i');
-        
+
         if (document.body.classList.contains('dark-theme')) {
             icon.className = 'bi bi-sun';
             localStorage.setItem('theme', 'dark');
@@ -448,7 +454,7 @@ function initThemeSwitcher() {
             localStorage.setItem('theme', 'light');
         }
     });
-    
+
     // Load saved theme
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
@@ -461,18 +467,18 @@ function initThemeSwitcher() {
 function downloadCV() {
     // Show immediate feedback
     showNotification('Starting CV download... 📄', 'success');
-    
+
     // Create a temporary link element
     const link = document.createElement('a');
     link.href = 'cv/Rajhisimailcv.pdf';
     link.download = 'Rajhi_Ismail_CV.pdf';
     link.target = '_blank';
-    
+
     // Append to body, click, and remove
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    
+
     // Update button feedback
     const button = document.getElementById('downloadCV');
     if (button) {
@@ -480,29 +486,29 @@ function downloadCV() {
         button.innerHTML = '<i class="bi bi-check-circle"></i> Downloaded!';
         button.style.background = '#28a745';
         button.style.borderColor = '#28a745';
-        
+
         setTimeout(() => {
             button.innerHTML = originalText;
             button.style.background = '';
             button.style.borderColor = '';
         }, 3000);
     }
-    
+
     console.log('CV Download attempted:', new Date().toISOString());
 }
 
 function initCVDownload() {
     const cvButton = document.querySelector('#downloadCV');
-    
+
     if (cvButton) {
         // Add hover effect for CV button
-        cvButton.addEventListener('mouseenter', function() {
+        cvButton.addEventListener('mouseenter', function () {
             if (!this.innerHTML.includes('Downloaded')) {
                 this.innerHTML = '<i class="bi bi-download"></i> Download CV';
             }
         });
-        
-        cvButton.addEventListener('mouseleave', function() {
+
+        cvButton.addEventListener('mouseleave', function () {
             if (!this.innerHTML.includes('Downloaded')) {
                 this.innerHTML = 'Download CV';
             }
@@ -523,7 +529,7 @@ function initProjectModal() {
             title: 'Weatherly',
             image: 'images/project3.jpg',
             description: 'Weatherly is a beautiful and intuitive weather app built with Flutter that provides live weather forecasts for any location. With stunning animations and a clean, modern interface.',
-            tech: ['Flutter','Dart','OpenWeather API'],
+            tech: ['Flutter', 'Dart', 'OpenWeather API'],
             // Open local video when "View" is clicked
             live: 'Projects/Weatherly/Weatherlyvid.mp4',
             code: 'https://github.com/RAJHI-ISMAIL/Weatherly/blob/main/README.md'
@@ -533,14 +539,14 @@ function initProjectModal() {
             title: 'CineScope',
             image: 'Projects/CineScope/logo.png',
             description: 'CineScope is a movie discovery app built with Flutter. Click View to watch a short demo video.',
-            tech: ['Flutter','Dart'],
+            tech: ['Flutter', 'Dart'],
             live: 'Projects/CineScope/viewcine.mp4',
             code: 'https://github.com/RAJHI-ISMAIL/CineScope/blob/main/README.md'
         }
     };
 
     buttons.forEach(btn => {
-        btn.addEventListener('click', function(e) {
+        btn.addEventListener('click', function (e) {
             e.preventDefault();
             const id = this.getAttribute('data-project');
             const p = projects[id];
@@ -570,6 +576,157 @@ function initProjectModal() {
 }
 
 // Initialize project modal listener after DOM load
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     initProjectModal();
 });
+
+// Custom Cursor Implementation
+function initCustomCursor() {
+    // Create custom cursor elements
+    const cursor = document.createElement('div');
+    cursor.className = 'custom-cursor';
+    document.body.appendChild(cursor);
+
+    const cursorDot = document.createElement('div');
+    cursorDot.className = 'custom-cursor-dot';
+    document.body.appendChild(cursorDot);
+
+    let mouseX = 0;
+    let mouseY = 0;
+    let cursorX = 0;
+    let cursorY = 0;
+    let dotX = 0;
+    let dotY = 0;
+
+    // Track mouse position
+    document.addEventListener('mousemove', function (e) {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+
+        // Create trail effect
+        createTrailParticle(e.clientX, e.clientY);
+    });
+
+    // Smooth cursor following animation
+    function animateCursor() {
+        // Cursor ring follows with delay
+        cursorX += (mouseX - cursorX) * 0.15;
+        cursorY += (mouseY - cursorY) * 0.15;
+
+        // Dot follows immediately
+        dotX += (mouseX - dotX) * 0.5;
+        dotY += (mouseY - dotY) * 0.5;
+
+        cursor.style.left = cursorX + 'px';
+        cursor.style.top = cursorY + 'px';
+
+        cursorDot.style.left = dotX + 'px';
+        cursorDot.style.top = dotY + 'px';
+
+        requestAnimationFrame(animateCursor);
+    }
+
+    animateCursor();
+
+    // Add hover effect for interactive elements
+    const interactiveElements = document.querySelectorAll('a, button, .btn, .project-card, .skill-card, .contact-item, input, textarea');
+
+    interactiveElements.forEach(element => {
+        element.addEventListener('mouseenter', function () {
+            cursor.classList.add('hover');
+        });
+
+        element.addEventListener('mouseleave', function () {
+            cursor.classList.remove('hover');
+        });
+    });
+}
+
+// Mouse Trail Effect
+let trailThrottle = 0;
+function createTrailParticle(x, y) {
+    // Throttle trail creation for performance
+    trailThrottle++;
+    if (trailThrottle % 3 !== 0) return;
+
+    const trail = document.createElement('div');
+    trail.className = 'cursor-trail';
+    trail.style.left = x + 'px';
+    trail.style.top = y + 'px';
+
+    document.body.appendChild(trail);
+
+    // Remove trail particle after animation
+    setTimeout(() => {
+        if (trail.parentNode) {
+            document.body.removeChild(trail);
+        }
+    }, 600);
+}
+
+// Background Particles System
+function initBackgroundParticles() {
+    // Create particles container
+    const particlesContainer = document.createElement('div');
+    particlesContainer.className = 'particles-container';
+    document.body.insertBefore(particlesContainer, document.body.firstChild);
+
+    const particleCount = 30;
+    const shapes = ['circle', 'square', 'triangle'];
+
+    // Create particles
+    for (let i = 0; i < particleCount; i++) {
+        createParticle(particlesContainer, shapes);
+    }
+
+    // Continuously create new particles
+    setInterval(() => {
+        if (particlesContainer.children.length < particleCount) {
+            createParticle(particlesContainer, shapes);
+        }
+    }, 3000);
+}
+
+function createParticle(container, shapes) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+
+    // Random shape
+    const shape = shapes[Math.floor(Math.random() * shapes.length)];
+    if (shape !== 'circle') {
+        particle.classList.add(shape);
+    }
+
+    // Random size
+    const size = Math.random() * 15 + 5; // 5-20px
+    if (shape === 'circle' || shape === 'square') {
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+    }
+
+    // Random starting position
+    particle.style.left = Math.random() * 100 + '%';
+    particle.style.bottom = '-50px';
+
+    // Random animation duration
+    const duration = Math.random() * 15 + 15; // 15-30 seconds
+    particle.style.animationDuration = duration + 's';
+
+    // Random delay
+    const delay = Math.random() * 5;
+    particle.style.animationDelay = delay + 's';
+
+    // Random horizontal movement
+    const moveX = (Math.random() - 0.5) * 200; // -100 to 100px
+    particle.style.setProperty('--moveX', moveX + 'px');
+
+    container.appendChild(particle);
+
+    // Remove particle after animation completes
+    setTimeout(() => {
+        if (particle.parentNode) {
+            container.removeChild(particle);
+        }
+    }, (duration + delay) * 1000);
+}
+
