@@ -19,10 +19,9 @@ document.addEventListener('DOMContentLoaded', function () {
     initActiveSection();
 
     // Typing animation for hero section
-    initTypingAnimation();
+    // initTypingAnimation();
 
-    // Contact form handling
-    initContactForm();
+    // Contact form removed from HTML; contact handling is disabled.
 
     // Scroll to top button
     initScrollToTop();
@@ -49,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
 // Navbar scroll effect
 function initNavbarScroll() {
     const navbar = document.querySelector('.navbar');
-
+    
     window.addEventListener('scroll', function () {
         if (window.scrollY > 50) {
             navbar.classList.add('scrolled');
@@ -62,27 +61,29 @@ function initNavbarScroll() {
 // Smooth scrolling for navigation links
 function initSmoothScrolling() {
     const navLinks = document.querySelectorAll('a[href^="#"]');
-
+    
     navLinks.forEach(link => {
         link.addEventListener('click', function (e) {
             e.preventDefault();
-
+            
             const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
             const targetSection = document.querySelector(targetId);
-
+            
             if (targetSection) {
                 const offsetTop = targetSection.offsetTop - 70;
-
+                
                 window.scrollTo({
                     top: offsetTop,
                     behavior: 'smooth'
                 });
-
+                
                 // Close mobile menu if open
                 const navbarCollapse = document.querySelector('.navbar-collapse');
-                if (navbarCollapse.classList.contains('show')) {
+                if (navbarCollapse && navbarCollapse.classList.contains('show')) {
                     const navbarToggler = document.querySelector('.navbar-toggler');
-                    navbarToggler.click();
+                    if (navbarToggler) navbarToggler.click();
                 }
             }
         });
@@ -93,19 +94,19 @@ function initSmoothScrolling() {
 function initActiveSection() {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-
+    
     window.addEventListener('scroll', function () {
         let currentSection = '';
-
+        
         sections.forEach(section => {
             const sectionTop = section.offsetTop - 100;
             const sectionHeight = section.clientHeight;
-
+            
             if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
                 currentSection = section.getAttribute('id');
             }
         });
-
+        
         navLinks.forEach(link => {
             link.classList.remove('active');
             if (link.getAttribute('href') === '#' + currentSection) {
@@ -115,10 +116,13 @@ function initActiveSection() {
     });
 }
 
-// Typing animation for hero section
+// Navbar scroll effect
+
 function initTypingAnimation() {
     const roles = ['Full Stack Developer', 'UI/UX Designer', 'Problem Solver', 'Tech Enthusiast'];
-    const roleElement = document.querySelector('.hero-section h3');
+    const roleElement = document.querySelector('.hero-section h1');
+    if (!roleElement) return;
+
     let currentRoleIndex = 0;
     let currentCharIndex = 0;
     let isDeleting = false;
@@ -147,87 +151,10 @@ function initTypingAnimation() {
         setTimeout(typeRole, typeSpeed);
     }
 
-    if (roleElement) {
-        setTimeout(typeRole, 1000);
-    }
+    setTimeout(typeRole, 1000);
 }
 
-// Contact form handling
-function initContactForm() {
-    const contactForm = document.querySelector('.contact-form');
 
-    if (contactForm) {
-        contactForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            // Read form fields by name
-            const name = this.querySelector('input[name="name"]').value.trim();
-            const email = this.querySelector('input[name="email"]').value.trim();
-            const subject = this.querySelector('input[name="subject"]').value.trim();
-            const message = this.querySelector('textarea[name="message"]').value.trim();
-
-            // Basic validation
-            if (!name || !email || !subject || !message) {
-                showNotification('Please fill in all fields', 'error');
-                return;
-            }
-
-            if (!isValidEmail(email)) {
-                showNotification('Please enter a valid email address', 'error');
-                return;
-            }
-
-            // Try to send via EmailJS if available (preferred). If EmailJS is not configured
-            // or the send fails, fall back to mailto: which opens the user's mail client.
-            //
-            // EmailJS Service ID and Template ID (inserted by user)
-            const EMAILJS_SERVICE_ID = 'portfilio';
-            const EMAILJS_TEMPLATE_ID = 'template_lmrmmzs';
-
-            const templateParams = {
-                from_name: name,
-                from_email: email,
-                subject: subject,
-                message: message
-            };
-
-            const tryMailtoFallback = () => {
-                const to = 'ismailrajhi07@gmail.com';
-                const mailSubject = encodeURIComponent(subject + ' — from ' + name);
-                const mailBody = encodeURIComponent(`Name: ${name}%0AEmail: ${email}%0A%0A${message}`);
-                const mailto = `mailto:${to}?subject=${mailSubject}&body=${mailBody}`;
-                window.location.href = mailto;
-                showNotification('Opening your mail client to send the message...', 'success');
-                setTimeout(() => contactForm.reset(), 1000);
-            };
-
-            // Use EmailJS if the SDK has been initialized and placeholders were replaced
-            if (window.emailjs && EMAILJS_SERVICE_ID !== 'YOUR_SERVICE_ID' && EMAILJS_TEMPLATE_ID !== 'YOUR_TEMPLATE_ID') {
-                showNotification('Sending message...', 'success');
-                emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
-                    .then(function (response) {
-                        console.log('EmailJS success', response.status, response.text);
-                        showNotification('Message sent! I will get back to you soon.', 'success');
-                        contactForm.reset();
-                    }, function (error) {
-                        console.error('EmailJS error', error);
-                        showNotification('Failed to send via EmailJS, opening mail client as fallback.', 'error');
-                        // fallback to mailto
-                        tryMailtoFallback();
-                    });
-            } else {
-                // EmailJS not configured — use mailto fallback
-                tryMailtoFallback();
-            }
-        });
-    }
-}
-
-// Email validation
-function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-}
 
 // Notification system
 function showNotification(message, type = 'success') {
@@ -338,7 +265,9 @@ function initSkillsAnimation() {
     });
 }
 
-// Counter animation for stats
+// Counter animation for stats - NOT USED (no stat elements in HTML)
+// Uncomment if you add stat elements
+/*
 function animateCounters() {
     const counters = document.querySelectorAll('.stat-item h4');
 
@@ -360,8 +289,11 @@ function animateCounters() {
         updateCounter();
     });
 }
+*/
 
-// Project filter functionality (for future enhancement)
+// Project filter functionality (for future enhancement) - NOT USED
+// Uncomment if you add filter buttons to HTML
+/*
 function initProjectFilter() {
     const filterButtons = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
@@ -386,8 +318,11 @@ function initProjectFilter() {
         });
     });
 }
+*/
 
-// Mouse cursor effects
+// Mouse cursor effects - REPLACED BY initCustomCursor()
+// Keeping commented for reference
+/*
 function initCursorEffects() {
     const cursor = document.createElement('div');
     cursor.className = 'custom-cursor';
@@ -418,8 +353,11 @@ function initCursorEffects() {
         cursor.style.opacity = '0';
     });
 }
+*/
 
-// Initialize theme switcher (optional)
+// Initialize theme switcher (optional) - NOT USED
+// Uncomment if you want dark/light mode toggle
+/*
 function initThemeSwitcher() {
     const themeToggle = document.createElement('button');
     themeToggle.className = 'theme-toggle';
@@ -462,6 +400,7 @@ function initThemeSwitcher() {
         themeToggle.querySelector('i').className = 'bi bi-sun';
     }
 }
+*/
 
 // CV Download functionality
 function downloadCV() {
@@ -470,7 +409,7 @@ function downloadCV() {
 
     // Create a temporary link element
     const link = document.createElement('a');
-    link.href = 'cv/Rajhisimailcv.pdf';
+    link.href = 'cv/Rajhi Ismail cv.pdf';
     link.download = 'Rajhi_Ismail_CV.pdf';
     link.target = '_blank';
 
@@ -580,21 +519,21 @@ document.addEventListener('DOMContentLoaded', function () {
     initProjectModal();
 });
 
-// Custom Cursor Implementation
+// Custom Cursor Implementation - Updated for new design
 function initCustomCursor() {
-    // Create custom cursor elements
-    const cursor = document.createElement('div');
-    cursor.className = 'custom-cursor';
-    document.body.appendChild(cursor);
-
+    // Create cursor elements with new class names
     const cursorDot = document.createElement('div');
-    cursorDot.className = 'custom-cursor-dot';
+    cursorDot.className = 'cursor-dot';
     document.body.appendChild(cursorDot);
+
+    const cursorOutline = document.createElement('div');
+    cursorOutline.className = 'cursor-outline';
+    document.body.appendChild(cursorOutline);
 
     let mouseX = 0;
     let mouseY = 0;
-    let cursorX = 0;
-    let cursorY = 0;
+    let outlineX = 0;
+    let outlineY = 0;
     let dotX = 0;
     let dotY = 0;
 
@@ -603,22 +542,34 @@ function initCustomCursor() {
         mouseX = e.clientX;
         mouseY = e.clientY;
 
-        // Create trail effect
-        createTrailParticle(e.clientX, e.clientY);
+        // Create particle trail
+        createCursorParticle(e.clientX, e.clientY);
+    });
+
+    // Hide cursor when mouse leaves window
+    document.addEventListener('mouseleave', function () {
+        cursorDot.style.opacity = '0';
+        cursorOutline.style.opacity = '0';
+    });
+
+    // Show cursor when mouse enters window
+    document.addEventListener('mouseenter', function () {
+        cursorDot.style.opacity = '1';
+        cursorOutline.style.opacity = '1';
     });
 
     // Smooth cursor following animation
     function animateCursor() {
-        // Cursor ring follows with delay
-        cursorX += (mouseX - cursorX) * 0.15;
-        cursorY += (mouseY - cursorY) * 0.15;
+        // Outline follows with delay for smooth effect
+        outlineX += (mouseX - outlineX) * 0.15;
+        outlineY += (mouseY - outlineY) * 0.15;
 
-        // Dot follows immediately
-        dotX += (mouseX - dotX) * 0.5;
-        dotY += (mouseY - dotY) * 0.5;
+        // Dot follows more quickly
+        dotX += (mouseX - dotX) * 0.6;
+        dotY += (mouseY - dotY) * 0.6;
 
-        cursor.style.left = cursorX + 'px';
-        cursor.style.top = cursorY + 'px';
+        cursorOutline.style.left = outlineX + 'px';
+        cursorOutline.style.top = outlineY + 'px';
 
         cursorDot.style.left = dotX + 'px';
         cursorDot.style.top = dotY + 'px';
@@ -629,40 +580,59 @@ function initCustomCursor() {
     animateCursor();
 
     // Add hover effect for interactive elements
-    const interactiveElements = document.querySelectorAll('a, button, .btn, .project-card, .skill-card, .contact-item, input, textarea');
+    const interactiveElements = document.querySelectorAll('a, button, .btn, .glass-card, .navbar-brand, .nav-link, .social-links a');
 
     interactiveElements.forEach(element => {
         element.addEventListener('mouseenter', function () {
-            cursor.classList.add('hover');
+            document.body.classList.add('hovering');
         });
 
         element.addEventListener('mouseleave', function () {
-            cursor.classList.remove('hover');
+            document.body.classList.remove('hovering');
         });
+    });
+
+    // Click ripple effect
+    document.addEventListener('mousedown', function (e) {
+        const ripple = document.createElement('div');
+        ripple.className = 'cursor-ripple';
+        ripple.style.left = e.clientX + 'px';
+        ripple.style.top = e.clientY + 'px';
+        ripple.style.transform = 'translate(-50%, -50%)';
+        document.body.appendChild(ripple);
+
+        // Remove ripple after animation
+        setTimeout(() => {
+            if (ripple.parentNode) {
+                document.body.removeChild(ripple);
+            }
+        }, 600);
     });
 }
 
-// Mouse Trail Effect
-let trailThrottle = 0;
-function createTrailParticle(x, y) {
-    // Throttle trail creation for performance
-    trailThrottle++;
-    if (trailThrottle % 3 !== 0) return;
+// Cursor Particle Trail
+let particleThrottle = 0;
+function createCursorParticle(x, y) {
+    particleThrottle++;
+    // Create particle every 5 frames for performance
+    if (particleThrottle % 5 !== 0) return;
 
-    const trail = document.createElement('div');
-    trail.className = 'cursor-trail';
-    trail.style.left = x + 'px';
-    trail.style.top = y + 'px';
+    const particle = document.createElement('div');
+    particle.className = 'cursor-particle';
+    particle.style.left = x + 'px';
+    particle.style.top = y + 'px';
+    particle.style.transform = 'translate(-50%, -50%)';
 
-    document.body.appendChild(trail);
+    document.body.appendChild(particle);
 
-    // Remove trail particle after animation
+    // Remove particle after animation
     setTimeout(() => {
-        if (trail.parentNode) {
-            document.body.removeChild(trail);
+        if (particle.parentNode) {
+            document.body.removeChild(particle);
         }
-    }, 600);
+    }, 800);
 }
+
 
 // Background Particles System
 function initBackgroundParticles() {
