@@ -291,6 +291,40 @@ h6 {
     transform: scale(1.05);
 }
 
+.project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(5px);
+    border-radius: 12px;
+}
+
+.project-image:hover .project-overlay {
+    opacity: 1;
+}
+
+.project-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.project-actions .btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
 .project-tech .badge {
     background: rgba(255, 255, 255, 0.1);
     color: var(--text-color);

@@ -173,8 +173,8 @@
                                     <a href="#" class="btn btn-primary btn-sm project-view-btn" data-project="weatherly" target="_blank" rel="noopener">
                                         <i class="bi bi-eye"></i> View
                                     </a>
-                                    <a href="https://github.com/RAJHI-ISMAIL/Weatherly/blob/main/README.md" class="btn btn-outline-light btn-sm" target="_blank" rel="noopener">
-                                        <i class="bi bi-github"></i> Code
+                                    <a href="https://github.com/RAJHI-ISMAIL/Weatherly" class="btn btn-outline-light btn-sm" target="_blank" rel="noopener">
+                                        <i class="bi bi-github"></i> GitHub
                                     </a>
                                 </div>
                             </div>
@@ -201,8 +201,8 @@
 
                                         View
                                     </a>
-                                    <a href="https://github.com/RAJHI-ISMAIL/CineScope/blob/main/README.md" class="btn btn-outline-light btn-sm" target="_blank" rel="noopener">
-                                        <i class="bi bi-github"></i> Code
+                                    <a href="https://github.com/RAJHI-ISMAIL/CineScope" class="btn btn-outline-light btn-sm" target="_blank" rel="noopener">
+                                        <i class="bi bi-github"></i> GitHub
                                     </a>
                                 </div>
                             </div>
@@ -234,9 +234,6 @@
                                         </svg>
                                         View
                                     </a>
-                    
-                                   
-                                    
                                 </div>
                             </div>
                         </div>
@@ -323,24 +320,36 @@
     
         <!-- Project Detail Modal -->
         <div class="modal fade" id="projectModal" tabindex="-1" aria-labelledby="projectModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
-                <div class="modal-content bg-dark text-white">
-                    <div class="modal-header border-0">
-                        <h5 class="modal-title" id="projectModalLabel">Project Title</h5>
+            <div class="modal-dialog modal-fullscreen modal-dialog-centered">
+                <div class="modal-content bg-dark text-white border-0">
+                    <div class="modal-header border-0 pb-0">
+                        <h5 class="modal-title fs-4 fw-bold" id="projectModalLabel">Project Title</h5>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <img id="projectModalImage" src="" alt="Project image" class="img-fluid rounded">
-                            </div>
-                            <div class="col-md-6">
-                                <p id="projectModalDescription"></p>
-                                <div id="projectModalTech" class="mb-3"></div>
-                                <div class="d-flex gap-2">
-                                    <a id="projectModalLive" href="#" target="_blank" rel="noopener" class="btn btn-primary">Live Demo</a>
-                                    <a id="projectModalCode" href="#" target="_blank" rel="noopener" class="btn btn-outline-light">Source Code</a>
+                    <div class="modal-body d-flex align-items-center">
+                        <div class="row w-100 g-4">
+                            <div class="col-lg-7">
+                                <div id="projectModalMediaContainer" class="position-relative">
+                                    <img id="projectModalImage" src="" alt="Project image" class="img-fluid rounded w-100" style="max-height: 500px; object-fit: contain;">
+                                    <video id="projectModalVideo" class="w-100 rounded" style="max-height: 500px; object-fit: contain; display: none;" controls></video>
                                 </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <p id="projectModalDescription" class="text-muted mb-4"></p>
+                                <div class="mb-4">
+                                    <h6 class="fw-bold mb-2">Technologies:</h6>
+                                    <div id="projectModalTech"></div>
+                                </div>
+                                <div class="d-flex gap-2 flex-wrap">
+                                    <a id="projectModalLive" href="#" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
+                                        <i class="bi bi-play-circle"></i> View Demo
+                                    </a>
+                                    <a id="projectModalCode" href="#" target="_blank" rel="noopener" class="btn btn-outline-light btn-sm">
+                                        <i class="bi bi-github"></i> GitHub Repository
+                                    </a>
+                                </div>
+                                <hr class="my-4">
+                                <div id="projectModalDetails"></div>
                             </div>
                         </div>
                     </div>

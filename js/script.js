@@ -466,21 +466,23 @@ function initProjectModal() {
     const projects = {
         weatherly: {
             title: 'Weatherly',
-            image: 'images/project3.jpg',
-            description: 'Weatherly is a beautiful and intuitive weather app built with Flutter that provides live weather forecasts for any location. With stunning animations and a clean, modern interface.',
-            tech: ['Flutter', 'Dart', 'OpenWeather API'],
-            // Open local video when "View" is clicked
-            live: 'Projects/Weatherly/Weatherlyvid.mp4',
-            code: 'https://github.com/RAJHI-ISMAIL/Weatherly/blob/main/README.md'
-        }
-        ,
+            image: 'Projects/Weatherly/Weatherly.png',
+            video: 'Projects/Weatherly/Weatherlyvid.mp4',
+            description: 'Weatherly is a beautiful and intuitive weather app built with Flutter that provides real-time weather forecasts for any location worldwide. Featuring stunning Lottie animations and a clean, modern interface that makes checking the weather a delightful experience.',
+            tech: ['Flutter', 'Dart', 'OpenWeather API', 'Lottie Animations'],
+            demoLink: 'Projects/Weatherly/Weatherlyvid.mp4',
+            repoLink: 'https://github.com/RAJHI-ISMAIL/Weatherly',
+            details: 'Built with Flutter for cross-platform compatibility. Features include location-based weather, hourly forecasts, and beautiful animations.'
+        },
         cinescope: {
             title: 'CineScope',
             image: 'Projects/CineScope/logo.png',
-            description: 'CineScope is a movie discovery app built with Flutter. Click View to watch a short demo video.',
-            tech: ['Flutter', 'Dart'],
-            live: 'Projects/CineScope/viewcine.mp4',
-            code: 'https://github.com/RAJHI-ISMAIL/CineScope/blob/main/README.md'
+            video: 'Projects/CineScope/viewcine.mp4',
+            description: 'CineScope is a comprehensive movie discovery app built with Flutter. It allows users to search for movies, TV series, view ratings, and manage their watchlist.',
+            tech: ['Flutter', 'Dart', 'Movie API', 'State Management'],
+            demoLink: 'Projects/CineScope/viewcine.mp4',
+            repoLink: 'https://github.com/RAJHI-ISMAIL/CineScope',
+            details: 'A feature-rich app that integrates with a movie database API. Users can browse trending movies, search by genre, and save favorites.'
         }
     };
 
@@ -491,23 +493,46 @@ function initProjectModal() {
             const p = projects[id];
             if (!p) return;
 
-            // If the project has a live link that points to an external page (http) or a video file (.mp4/.webm),
-            // open it directly instead of showing the modal.
-            if (p.live && p.live !== '#') {
-                const lower = p.live.toLowerCase();
-                if (lower.endsWith('.mp4') || lower.endsWith('.webm') || p.live.startsWith('http')) {
-                    window.open(p.live, '_blank', 'noopener');
-                    return;
-                }
-            }
-
-            // populate modal
+            // Populate modal
             document.getElementById('projectModalLabel').textContent = p.title;
-            document.getElementById('projectModalImage').src = p.image;
+            
+            // Handle media display (image or video)
+            const mediaContainer = document.getElementById('projectModalMediaContainer');
+            const imgElement = document.getElementById('projectModalImage');
+            const videoElement = document.getElementById('projectModalVideo');
+            
+            if (p.video) {
+                imgElement.style.display = 'none';
+                videoElement.style.display = 'block';
+                videoElement.src = p.video;
+                videoElement.load();
+            } else {
+                videoElement.style.display = 'none';
+                imgElement.style.display = 'block';
+                imgElement.src = p.image;
+            }
+            
             document.getElementById('projectModalDescription').textContent = p.description;
-            document.getElementById('projectModalTech').innerHTML = p.tech.map(t => `<span class="badge bg-secondary me-1">${t}</span>`).join(' ');
-            document.getElementById('projectModalLive').href = p.live;
-            document.getElementById('projectModalCode').href = p.code;
+            document.getElementById('projectModalTech').innerHTML = p.tech.map(t => `<span class="badge bg-primary me-1">${t}</span>`).join('');
+            
+            // Set up demo link - if it's a video, clicking will play it in modal
+            const demoBtn = document.getElementById('projectModalLive');
+            if (p.video && p.video.toLowerCase().endsWith('.mp4')) {
+                demoBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    videoElement.play();
+                });
+            } else {
+                demoBtn.href = p.demoLink;
+            }
+            
+            // Set up GitHub link
+            const codeBtn = document.getElementById('projectModalCode');
+            codeBtn.href = p.repoLink;
+            codeBtn.target = '_blank';
+            codeBtn.rel = 'noopener';
+            
+            document.getElementById('projectModalDetails').innerHTML = `<p class="text-muted mb-0"><strong>About:</strong> ${p.details}</p>`;
 
             bsModal.show();
         });
