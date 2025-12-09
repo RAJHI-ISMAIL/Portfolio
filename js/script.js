@@ -409,7 +409,8 @@ function downloadCV() {
 
     // Create a temporary link element
     const link = document.createElement('a');
-    link.href = 'cv/Rajhi Ismail cv.pdf';
+    // Use the exact filename present in the repository to ensure downloads work on all platforms
+    link.href = 'cv/Rajhi_Ismail_CV.pdf';
     link.download = 'Rajhi_Ismail_CV.pdf';
     link.target = '_blank';
 
