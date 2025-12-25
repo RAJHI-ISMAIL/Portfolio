@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
 // Navbar scroll effect
 function initNavbarScroll() {
     const navbar = document.querySelector('.navbar');
-    
+
     window.addEventListener('scroll', function () {
         if (window.scrollY > 50) {
             navbar.classList.add('scrolled');
@@ -61,24 +61,24 @@ function initNavbarScroll() {
 // Smooth scrolling for navigation links
 function initSmoothScrolling() {
     const navLinks = document.querySelectorAll('a[href^="#"]');
-    
+
     navLinks.forEach(link => {
         link.addEventListener('click', function (e) {
             e.preventDefault();
-            
+
             const targetId = this.getAttribute('href');
             if (targetId === '#') return;
-            
+
             const targetSection = document.querySelector(targetId);
-            
+
             if (targetSection) {
                 const offsetTop = targetSection.offsetTop - 70;
-                
+
                 window.scrollTo({
                     top: offsetTop,
                     behavior: 'smooth'
                 });
-                
+
                 // Close mobile menu if open
                 const navbarCollapse = document.querySelector('.navbar-collapse');
                 if (navbarCollapse && navbarCollapse.classList.contains('show')) {
@@ -94,19 +94,19 @@ function initSmoothScrolling() {
 function initActiveSection() {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-    
+
     window.addEventListener('scroll', function () {
         let currentSection = '';
-        
+
         sections.forEach(section => {
             const sectionTop = section.offsetTop - 100;
             const sectionHeight = section.clientHeight;
-            
+
             if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
                 currentSection = section.getAttribute('id');
             }
         });
-        
+
         navLinks.forEach(link => {
             link.classList.remove('active');
             if (link.getAttribute('href') === '#' + currentSection) {
@@ -119,39 +119,23 @@ function initActiveSection() {
 // Navbar scroll effect
 
 function initTypingAnimation() {
-    const roles = ['Full Stack Developer', 'UI/UX Designer', 'Problem Solver', 'Tech Enthusiast'];
+    const text = "Hi I'm Ismail Rajhi, a Computer Science Student";
     const roleElement = document.querySelector('.hero-section h1');
     if (!roleElement) return;
 
-    let currentRoleIndex = 0;
     let currentCharIndex = 0;
-    let isDeleting = false;
 
-    function typeRole() {
-        const currentRole = roles[currentRoleIndex];
-
-        if (isDeleting) {
-            roleElement.textContent = currentRole.substring(0, currentCharIndex - 1);
-            currentCharIndex--;
-        } else {
-            roleElement.textContent = currentRole.substring(0, currentCharIndex + 1);
+    function typeText() {
+        if (currentCharIndex < text.length) {
+            roleElement.textContent = text.substring(0, currentCharIndex + 1);
             currentCharIndex++;
+            setTimeout(typeText, 80);
         }
-
-        let typeSpeed = isDeleting ? 100 : 200;
-
-        if (!isDeleting && currentCharIndex === currentRole.length) {
-            typeSpeed = 2000;
-            isDeleting = true;
-        } else if (isDeleting && currentCharIndex === 0) {
-            isDeleting = false;
-            currentRoleIndex = (currentRoleIndex + 1) % roles.length;
-        }
-
-        setTimeout(typeRole, typeSpeed);
     }
 
-    setTimeout(typeRole, 1000);
+    // Clear existing text and start typing
+    roleElement.textContent = '';
+    setTimeout(typeText, 500);
 }
 
 
@@ -470,7 +454,7 @@ function initProjectModal() {
             image: 'Projects/Weatherly/Weatherly.png',
             video: 'Projects/Weatherly/Weatherlyvid.mp4',
             description: 'Weatherly is a beautiful and intuitive weather app built with Flutter that provides real-time weather forecasts for any location worldwide. Featuring stunning Lottie animations and a clean, modern interface that makes checking the weather a delightful experience.',
-            tech: ['Flutter', 'Dart', 'OpenWeather API', 'Lottie Animations'],
+            tech: ['Flutter', 'Dart', 'OpenWeather API', 'Lottie Animations', 'Geolocator', 'REST API'],
             demoLink: 'Projects/Weatherly/Weatherlyvid.mp4',
             repoLink: 'https://github.com/RAJHI-ISMAIL/Weatherly',
             details: 'Built with Flutter for cross-platform compatibility. Features include location-based weather, hourly forecasts, and beautiful animations.'
@@ -480,10 +464,40 @@ function initProjectModal() {
             image: 'Projects/CineScope/logo.png',
             video: 'Projects/CineScope/viewcine.mp4',
             description: 'CineScope is a comprehensive movie discovery app built with Flutter. It allows users to search for movies, TV series, view ratings, and manage their watchlist.',
-            tech: ['Flutter', 'Dart', 'Movie API', 'State Management'],
+            tech: ['Flutter', 'Dart', 'TMDB API', 'State Management', 'Cached Network Image', 'REST API'],
             demoLink: 'Projects/CineScope/viewcine.mp4',
             repoLink: 'https://github.com/RAJHI-ISMAIL/CineScope',
             details: 'A feature-rich app that integrates with a movie database API. Users can browse trending movies, search by genre, and save favorites.'
+        },
+        legacywear: {
+            title: 'LegacyWear',
+            image: 'Projects/LegacyWear/LegacyWear.png',
+            video: '',
+            description: 'LegacyWear is a modern e-commerce mobile app design concept. It focuses on a clean, user-centric interface for browsing and purchasing fashion items, featuring a sleek dark mode and intuitive navigation.',
+            tech: ['Figma', 'UI/UX Design', 'Prototyping', 'Auto Layout', 'Wireframing'],
+            demoLink: 'Projects/LegacyWear/View.png',
+            repoLink: '#',
+            details: 'This project showcases high-fidelity prototyping and design systems in Figma. It includes screens for home, product details, cart, and checkout flows.'
+        },
+        eventsphere: {
+            title: 'EventSphere',
+            image: 'Projects/EventSphere/thumbnail.png',
+            video: '', // No video yet
+            description: 'EventSphere is a comprehensive event management system built with a microservices architecture. It handles everything from user authentication and event scheduling to billing and statistics, ensuring a scalable and robust solution for managing large-scale events.',
+            tech: ['Spring Boot', 'Microservices', 'Docker', 'PostgreSQL', 'Angular'],
+            demoLink: '#',
+            repoLink: 'https://github.com/RAJHI-ISMAIL/eventsphere',
+            details: 'Designed with a microservices approach, EventSphere ensures high availability and scalability. Each service (Auth, Events, Participants, Billing, Statistics) runs in its own container, orchestrated by Docker Compose.'
+        },
+        olympic: {
+            title: 'Olympic Medal Prediction',
+            image: 'Projects/OlympicMedalPrediction/thumbnail.png',
+            video: '', // No video yet
+            description: 'This project leverages machine learning algorithms to analyze historical Olympic data and predict the medal counts for various countries. It involves data cleaning, exploratory data analysis, and model training using Python libraries.',
+            tech: ['Python', 'Pandas', 'Scikit-learn', 'Jupyter Notebook', 'Matplotlib'],
+            demoLink: '#',
+            repoLink: 'https://github.com/RAJHI-ISMAIL/-Olympic-Medal-Prediction',
+            details: 'The project uses historical data to train regression models. It includes detailed data visualization to understand trends and factors influencing medal success.'
         }
     };
 
@@ -496,12 +510,12 @@ function initProjectModal() {
 
             // Populate modal
             document.getElementById('projectModalLabel').textContent = p.title;
-            
+
             // Handle media display (image or video)
             const mediaContainer = document.getElementById('projectModalMediaContainer');
             const imgElement = document.getElementById('projectModalImage');
             const videoElement = document.getElementById('projectModalVideo');
-            
+
             if (p.video) {
                 imgElement.style.display = 'none';
                 videoElement.style.display = 'block';
@@ -512,27 +526,41 @@ function initProjectModal() {
                 imgElement.style.display = 'block';
                 imgElement.src = p.image;
             }
-            
+
             document.getElementById('projectModalDescription').textContent = p.description;
             document.getElementById('projectModalTech').innerHTML = p.tech.map(t => `<span class="badge bg-primary me-1">${t}</span>`).join('');
-            
+
             // Set up demo link - if it's a video, clicking will play it in modal
             const demoBtn = document.getElementById('projectModalLive');
+            // Remove any existing click handlers
+            const newDemoBtn = demoBtn.cloneNode(true);
+            demoBtn.parentNode.replaceChild(newDemoBtn, demoBtn);
+
             if (p.video && p.video.toLowerCase().endsWith('.mp4')) {
-                demoBtn.addEventListener('click', function (e) {
+                newDemoBtn.href = '#';
+                newDemoBtn.addEventListener('click', function (e) {
                     e.preventDefault();
                     videoElement.play();
                 });
             } else {
-                demoBtn.href = p.demoLink;
+                newDemoBtn.href = p.demoLink;
+                newDemoBtn.target = '_blank';
+                newDemoBtn.rel = 'noopener';
             }
-            
+
             // Set up GitHub link
             const codeBtn = document.getElementById('projectModalCode');
             codeBtn.href = p.repoLink;
             codeBtn.target = '_blank';
             codeBtn.rel = 'noopener';
-            
+
+            // Show/hide GitHub button if no repo link
+            if (p.repoLink === '#' || !p.repoLink) {
+                codeBtn.style.display = 'none';
+            } else {
+                codeBtn.style.display = 'inline-block';
+            }
+
             document.getElementById('projectModalDetails').innerHTML = `<p class="text-muted mb-0"><strong>About:</strong> ${p.details}</p>`;
 
             bsModal.show();
